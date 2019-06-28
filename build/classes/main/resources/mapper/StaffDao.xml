@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huel.ctmanager.dao.StaffDao">
+<!--<insert id="insertStaff" parameterType="staff">
+insert into main_statff values(#{s_id},#{s_name},#{s_gender},#{s_birthday},#{s_post},#{s_tel},#{s_title},#{t_department},#{s_statue})
+</insert>-->
+<!--<select id="selectStaffesByPage"  resultType="cn.edu.huel.ctmanager.pojo.Staff">
+select s_id,s_name,s_gender,s_birthday,s_tel,s_statue,p_category,p_type,d_name,t_name
+from main_staff,staff_post,staff_title,department
+where main_staff.s_post=staff.p_id and main_staff.s_department.d_id and main.staff.s_title=staff_title.t_id
+</select>-->
+<!--    <sql id="selectStaffesByPageWhere">
+        <where>
+            <if test="s_name!=null">s_name like "%"#{s_name}"%"</if>
+            <if test="p_category!=null">and p_category=#{p_category}</if>
+            <if test="p_type!=null">and p_type=#{p_type}</if>
+            <if test="d_name!=null">and d_name=#{d_name}</if>
+            and main_staff.s_post=staff_post.p_id and main_staff.s_department=department.d_id and main_staff.s_title=staff_title.t_id
+
+        </where>
+    </sql>
+    <select id="selectStaffesByPage"  resultType="cn.edu.huel.ctmanager.vo.StaffVo">
+    select s_id,
+    s_name,
+    s_gender,
+    s_birthday,
+    s_tel,
+    s_statue,
+    p_category,
+    p_type,
+    d_name,
+    t_name
+    from main_staff,staff_post,staff_title,department
+    <include refid="selectStaffesByPageWhere"/>
+</select>-->
+    <insert id="insertStaff" parameterType="staff">
+insert into main_staff values(#{s_id},#{s_name},#{s_gender},#{s_birthday},#{s_post},#{s_tel},#{s_title},#{s_department},#{s_statue})
+</insert>
+
+    <select id="selectStaffesByPage"  resultType="cn.edu.huel.ctmanager.vo.StaffVo">
+        select s_id,
+        s_name,
+        s_gender,
+        s_birthday,
+        s_tel,
+        s_statue,
+        p_category,
+        p_type,
+        d_name,
+        t_name
+        from main_staff,staff_post,staff_title,department
+        where main_staff.s_post=staff_post.p_id and main_staff.s_department=department.d_id and main_staff.s_title=staff_title.t_id
+        <if test="s_name!=null">and s_name like "%"#{s_name}"%"</if>
+        <if test="p_category!=null">and p_category=#{p_category}</if>
+        <if test="p_type!=null">and p_type=#{p_type}</if>
+        <if test="d_name!=null">and d_name=#{d_name}</if>
+    </select>
+    <select id="selectStaffById" parameterType="String" resultType="cn.edu.huel.ctmanager.vo.StaffVo">
+
+        select s_id,
+        s_name,
+        s_gender,
+        s_birthday,
+        s_tel,
+        s_statue,
+        p_category,
+        p_type,
+        d_name,
+        t_name
+        from main_staff,staff_post,staff_title,department
+        where main_staff.s_post=staff_post.p_id and main_staff.s_department=department.d_id and main_staff.s_title=staff_title.t_id and s_id=#{s_id}
+    </select>
+    <update id="updateStaff" parameterType="cn.edu.huel.ctmanager.vo.StaffVo">
+update main_staff set s_name=#{s_name},s_birthday=#{s_birthday},s_gender=#{s_gender},s_tel=#{s_tel},
+s_statue=#{s_statue},s_post=(select p_id from staff_post where p_category=#{p_category} and p_type=#{p_type}),s_title=(select t_id from staff_title where t_name=#{t_name}
+),s_department=(select d_id from department where d_name=#{d_name}) where s_id=#{s_id}
+</update>
+
+    <!-- <select id="selectStaffesByPage"  resultType="cn.edu.huel.ctmanager.vo.StaffVo">
+ select s_id,s_name,s_gender,s_birthday,s_tel,s_statue,p_category,p_type,d_name,t_name
+ from main_staff,staff_post,staff_title,department
+ where main_staff.s_post=staff_post.p_id and main_staff.s_department=department.d_id and main_staff.s_title=staff_title.t_id
+            </select>-->
+<!--<select id="selectStaffes"  parameterType="String"  resultType="huangcan.vo.StaffVo">
+select s_id,s_name,s_gender,s_birthday,s_tel,s_statue,p_category,p_type,d_name,t_name
+from main_staff,staff_post,staff_title,department
+where main_staff.s_post=staff.p_id and main_staff.s_department.d_id and main.staff.s_title=staff_title.t_id and s_name like concat('%',#{name},'%')
+</select>-->
+    <delete id="deleteStaffById" parameterType="int" >
+delete from main_staff where s_id=#{s_id}
+</delete>
+
+</mapper>

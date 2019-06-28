@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huel.ctmanager.dao.PostDao">
+<select id="seletcP_id" parameterType="String" resultType="int">
+select p_id from staff_post where p_category=#{p_category} and p_type=#{p_type}
+</select>
+<select id="seletcP_category" resultType="String">
+select distinct p_category from staff_post 
+</select>
+<select id="seletcP_type" resultType="String">
+select distinct p_type from staff_post 
+</select>
+</mapper>

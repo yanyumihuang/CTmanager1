@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huel.ctmanager.dao.StaffChangeDao">
+    <select id="selectchange"  resultType="staffChange">
+        select * from changes where 1=1
+</select>
+    <select id="selectchange1" parameterType="Integer" resultType="staffChange">
+        select * from changes where s_id=#{s_id}
+</select>
+    <insert id="insertchange" parameterType="staffChange" >
+
+        insert into changes (s_id,c_changetime,c_explain,c_situation) values(#{s_id},#{c_changetime},#{c_explain},#{c_situation})
+    </insert>
+</mapper>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huel.ctmanager.dao.uncommonStaffDao">
+<insert id="insertUncommonStaff" parameterType="uncommonStaff">
+insert into uncommon_staff values(#{id},#{nation},#{idcard},#{political},#{worktime},#{entrytime},#{place},#{education},#{graduationtime},
+#{university},#{major},#{postgrade},#{positiontime},#{postlegacy},#{level},#{onjobtime},#{form},#{schooltime},#{rank},#{agreement},#{signtime},#{ischange})
+</insert>
+    <select id="selectuncommonStaffById" parameterType="integer" resultType="uncommonStaff">
+        select * from uncommon_staff where id=#{id}
+    </select>
+    <update id="updateUncommonStaff" parameterType="uncommonStaff">
+update uncommon_staff set nation=#{nation},idcard=#{idcard},political=#{political},worktime=#{worktime},entrytime=#{entrytime},place=#{place},education=#{education},graduationtime=#{graduationtime},
+university=#{university},major=#{major},postgrade=#{postgrade},positiontime=#{positiontime},postlegacy=#{postlegacy},`level`=#{level},onjobtime=#{onjobtime},
+form=#{form},schooltime=#{schooltime},rank=#{rank},agreement=#{agreement},signtime=#{signtime},ischange=#{ischange} where id=#{id}
+</update>
+
+</mapper>

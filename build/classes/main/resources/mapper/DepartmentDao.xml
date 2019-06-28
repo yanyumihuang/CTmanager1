@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.edu.huel.ctmanager.dao.DepartmentDao">
+<select id="selectD_id" parameterType="String" resultType="int">
+select d_id from department where d_name=#{d_name}
+</select>
+
+<select id="selectD_name"  resultType="String">
+select distinct d_name from department
+</select>
+</mapper>

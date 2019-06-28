@@ -1,0 +1,4 @@
+# CTmanager1
+一个简单的ssm框架
+使用ssm，bootstrap和maven包管理工具
+主要实现了多条件查询和简单的日志记录
